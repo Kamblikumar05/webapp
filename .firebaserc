@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "netflixgpt-df3b5",
+    "build": "netflixgpt-df3b5"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
