@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import {  updateEmail } from "firebase/auth"; 
 import {  sendEmailVerification } from "firebase/auth";
 import { USER_AVATRA } from "../uittls/urls.js"  
+import { useNavigate } from "react-router-dom";
 
 
 const SigInPage = ()=>{
@@ -17,6 +18,7 @@ const SigInPage = ()=>{
     const email = useRef();
     const password = useRef();     
     const [erromessage,seterrormessage] = useState(null);  
+    const navigator = useNavigate()
 
      
 
@@ -31,23 +33,22 @@ const SigInPage = ()=>{
 
        if(!isSigin){       
              
-            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
-             .then((userCredential) => { 
-                const user = userCredential.user;  
-                  sendEmailVerification(auth.currentUser)
+        createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+            .then((userCredential) => { 
+                const user = userCredential.user;   
+                sendEmailVerification(auth.currentUser)
                     .then(() => {
                         // Email verification sent!
                         console.log('Email verification sent!')
                         // ...
-                    });
-                updateProfile(user, {
-                    displayName: FullName.current.value, photoURL: USER_AVATRA,
-                    
-                    
+                    }); 
+            updateProfile(user, {
+                    displayName: FullName.current.value, photoURL: USER_AVATRA, 
                 }).then(( ) => {
                     const {uid,email,displayName,photoURL} = user;
                     dispatch(adduser({uid:uid, email:email,displayName:displayName,photoURL:photoURL}))
                     // Profile updated!  
+                    navigator("/brouser")
                     
                 }).catch((error) => {
                     // An error occurred
@@ -63,20 +64,21 @@ const SigInPage = ()=>{
         }
         else{   
         signInWithEmailAndPassword(auth,  email.current.value, password.current.value)
-        .then((userCredential) => { 
-            const user = userCredential.user;     
-        })
-        .catch((error) => {
+            .then((userCredential) => { 
+            const user = userCredential.user;    
+            navigator("/brouser") ;
+            })
+            .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode,errorMessage);
             seterrormessage("Your not register plase sign Up now") ;
         });
         };   
-    }
+    };
 
     return ( <> 
-        <div className="SingInbox border-2 bg-black bg-opacity-70  border-gray-950 absolute   z-50 w-3/12 my-48 h-4/6 mx-auto left-0 right-0 min-h-4/6  min-w-[200px]">
+        <div className="SingInbox border-2 bg-black bg-opacity-70  rounded-xl border-gray-950 absolute   z-50 w-3/12 my-48 h-[40%] mx-auto left-0 right-0 min-h-4/6  min-w-[200px]">
             <div className="sigIn text-white text-4xl mt-4 mx-4 font-bold"> {isSigin ? "sign In" :"sign Up"} </div>
             <form onSubmit={(e)=> e.preventDefault()} className="form absolute m-5">
                 {!isSigin && <input ref={FullName} type="text" placeholder="Enter yoour full name " className="email  my-4 p-2 w-full rounded-md " />} 

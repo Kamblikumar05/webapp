@@ -19,3 +19,5 @@ export const PopularMovies = 'https://api.themoviedb.org/3/movie/popular?page=1'
 export const TopRatedMovies = 'https://api.themoviedb.org/3/movie/top_rated?page=1';
 
 export const UpcomingMovies = 'https://api.themoviedb.org/3/movie/upcoming?page=1';
+
+export const TMDB_IMG_PATH  = "https://image.tmdb.org/t/p/w300//";

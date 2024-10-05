@@ -1,0 +1,3 @@
+export const Langauges =  [{identifier:"English",langName:"English"},{identifier:"Kannada",langName:"ಕನ್ನಡ"},{identifier:"Hindi",langName:"हिंदी"}];
+
+export const GptLangauges = [{lang:"English",search:"Search",placeholder:"What did you like to Watch today "},{lang:"Kannada",search:"ಕನ್ನಡ",placeholder:"ನೀವು ಇಂದು ಏನನ್ನು ವೀಕ್ಷಿಸಲು ಇಷ್ಟಪಟ್ಟಿದ್ದೀರಿ"},{lang:"Hindi",search:"खोज",placeholder:"आज आपने क्या देखना पसंद किया"}];

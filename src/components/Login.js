@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { adduser, removeruser } from "../uittls/userSlice";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_PAGE_BGIM, LOGOURL } from "../uittls/urls.js";
+import { clearStorage } from "../uittls/movieSlice.js";
 
 const Login =()=>{  
     const dispatch = useDispatch()
@@ -16,17 +17,15 @@ const Login =()=>{
         if (user) { 
           const {uid,email,displayName,photoURL} = user;
           dispatch(adduser({uid:uid, email:email,displayName:displayName,photoURL:photoURL})); 
-          navigate("/brouser")
+          navigate("/brouser");
         } else {  
           // User is signed out
           dispatch(removeruser())
-          navigate("/") 
-          // ...
+          navigate("/") ;
+          // ..
         } });
         return () => { unSubscribe() };   
-        
-    
-    },[]);
+    },[ ]);
     
     return(
         

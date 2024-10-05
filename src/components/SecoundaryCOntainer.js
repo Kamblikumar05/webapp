@@ -6,8 +6,7 @@ const SecoundaryContainer =()=>{
     const NowPlayingMovies = useSelector(state=>state?.moive?.nowPlayingMovies);
     const PopularMovies = useSelector(state=>state?.moive?.popularMovie);
     const TopRatedMovies = useSelector(state=>state?.moive?.topRatedMovie);
-    const UpComingMovies = useSelector(state=>state?.moive?.upComeingMovie)
-    console.log(UpComingMovies)
+    const UpComingMovies = useSelector(state=>state?.moive?.upComeingMovie); 
      
     return (
 
@@ -17,8 +16,7 @@ const SecoundaryContainer =()=>{
                 <MoviePlayList Heading={"Popular Movies"} Movies={PopularMovies}  />
                 <MoviePlayList Heading={"Top Rated Movies"} Movies={TopRatedMovies} />
                 <MoviePlayList Heading={"UpComing Movies"} Movies={UpComingMovies}/>
-                <MoviePlayList/>
-                <MoviePlayList/>
+                
              </div>
         </>
     )

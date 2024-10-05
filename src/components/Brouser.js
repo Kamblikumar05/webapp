@@ -1,22 +1,21 @@
  
-import useNowPlayingMovie from "../uittls/useNowPlayingMovie";
-import usePopularMovies from "../uittls/usePopularMovies";
-import useTopRatedMovies from "../uittls/useTopRatedMovies";
-import useUpComeingMovies from "../uittls/useUpcomeingMovies";
+import { useSelector } from "react-redux"; 
 import MeanContainer from "./MeanContainer";
-import SecoundaryContainer from "./SecoundaryCOntainer";
+import SecoundaryContainer  from  "./SecoundaryContainer"
+import GptPage from "./GptPage";
 
 
 const Brouser =()=>{  
-    useNowPlayingMovie(); 
-    usePopularMovies();
-    useTopRatedMovies();
-    useUpComeingMovies();
+    // useNowPlayingMovie(); 
+    // usePopularMovies();
+    // useTopRatedMovies();
+    // useUpComeingMovies(); 
+    const showGpt = useSelector(state=>state.gpt.showGpt)
      
     return (  
-        <> 
-        <MeanContainer/> 
-        <SecoundaryContainer/> 
+        <> {showGpt  ? <GptPage/> : <> <MeanContainer/> 
+            <SecoundaryContainer/></>   }
+         
         {/* {
         Mean Container  
         Secoundary container

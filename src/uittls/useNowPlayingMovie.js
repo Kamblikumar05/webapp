@@ -1,20 +1,22 @@
 import { useEffect } from "react";
 import { MOVIE_LIST, NowPlayingMovies  } from "./urls";
-import { useDispatch } from "react-redux";
-import { addNowPlayingMoive } from "./movieSlice"
+import { useDispatch, useSelector } from "react-redux";
+import { addNowPlayingMoive, palyingMovieSuggection } from "./movieSlice" 
  
 const useNowPlayingMovie =()=>{
     const dispatch = useDispatch();
+    const MovieData = useSelector(store=>store.moive.nowPlayingMovies)
 
      useEffect(()=>{ 
-        fetchMoviesdata() 
+
+        !MovieData && fetchMoviesdata() 
      },[ ]);
 
     const fetchMoviesdata = async () => {
         const moviesData = await fetch(NowPlayingMovies, MOVIE_LIST);  
         const jsonMovieData = await moviesData.json(); 
-        dispatch(addNowPlayingMoive(jsonMovieData)) 
-    
+        dispatch(addNowPlayingMoive(jsonMovieData)); 
+
 
     };
      

@@ -1,19 +1,21 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MOVIE_LIST, TopRatedMovies } from "./urls";
-import { addTopRatedMovies } from "./movieSlice";
+import { addTopRatedMovies, palyingMovieSuggection } from "./movieSlice";
 
 const useTopRatedMovies=()=>{
     const dispatch = useDispatch();
+    const MovieData = useSelector(store=>store.moive.topRatedMovie)
 
     useEffect(()=>{
-        getTopRatedMovies();
+        !MovieData && getTopRatedMovies();
     },[ ]);
 
     const getTopRatedMovies= async ()=>{
         const getData = await fetch( TopRatedMovies,MOVIE_LIST);
         const jsongetData = await getData.json();
-        dispatch(addTopRatedMovies(jsongetData));
+        dispatch(addTopRatedMovies(jsongetData)); 
+        
 
     }
 
